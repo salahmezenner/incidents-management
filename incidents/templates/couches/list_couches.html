@@ -1,0 +1,37 @@
+{% extends 'superadmin/base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/list_couches.css' %}" >
+{% endblock %}
+
+{% block content %}
+<ol style="--length: 5" role="list">
+    <br> <br> <br> 
+    {% for couche in couches %}
+	<li style="--i: 1">
+		<h3>{{couche.couche}}:{{couche.technologie}}</h3>
+        <div class="buttons">
+            <a href="{% url 'edit_couche' couche.id %}" class="edit-btn">modifier</a>
+            <a href="{% url 'delete_couche' couche.id %}" class="delete-btn">supprimer</a>
+        </div>        
+	</li>
+    {% endfor %}
+</ol>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteLinks = document.querySelectorAll('.delete-btn');
+        deleteLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                var confirmation = confirm("Are you sure you want to delete?");
+
+                if (confirmation) {
+                    window.location.href = this.href;
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'superadmin/base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/list_platforms.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="wrap">
+    <div class="pricing-table">
+        {% for platform in platforms %}
+        <div class="plan">
+            <h3 class="name">
+                {{platform.nom}}
+            </h3>
+            <div class="details">
+                <p><strong>Département:</strong> {{platform.departement}}</p>
+                <p><strong>URL:</strong> <a href="{{platform.url}}" target="_blank">{{platform.url}}</a></p>
+                <p><strong>Platform ID:</strong> {{platform.id}}</p>
+            </div>
+            <div class="actions">
+                <h5 class="order"><a id="delete" class="delete-link" href="{% url 'platform_delete' platform.id %}">supprimer</a></h5>
+                <h5 class="order"><a id="edit" href="{% url 'platform_edit' platform.id %}">modifier</a></h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteLinks = document.querySelectorAll('.delete-link');
+        deleteLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                var confirmation = confirm("Are you sure you want to delete?");
+
+                if (confirmation) {
+                    window.location.href = this.href;
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock content %}
+

@@ -1,0 +1,49 @@
+{% extends 'superadmin/base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/create_user.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="container">
+      <div class="text">
+        Formulaire application 
+      </div>
+      <form class="form" method="Post">
+        {% csrf_token %}
+
+         <div class="form-row">
+            <div class="input-data">
+               <input type="text" name="nom" value="{{platform.nom}}" required>
+               <div class="underline"></div>
+               <label for="nom">Nom plateforme: </label>
+            </div>
+            <div class="input-data">
+               <input type="text" name="departement" value="{{platform.departement}}" required>
+               <div class="underline"></div>
+               <label for="departement"> Département: </label>
+            </div>
+         </div>
+         <div class="form-row">
+            <div class="input-data">
+               <input type="text" name="url" value="{{platform.url}}" required>
+               <div class="underline"></div>
+               <label for="url">Url: </label>
+            </div>
+         </div>
+         <div class="form-row">
+         <div class="input-data textarea">
+            <br />  <br>
+            <div class="form-row submit-btn">
+               <div class="input-data">
+                  <div class="inner"></div>
+                <input type="submit" value="Valider ">
+               </div>
+            </div>
+      </form>
+      </div>
+
+{% endblock content %}
+

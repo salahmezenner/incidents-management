@@ -1,0 +1,37 @@
+{% extends 'incidents/base.html' %}
+
+{% block show_incident_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/show_incident.css'%}">        
+{% endblock  %}
+
+{% block content %}
+<div class="container">
+    <div class="incident">
+      <div class="incident-header">
+        <h2>{{incident.intitule}}</h2>
+        <p class="datetime">{{incident.datetime}}</p>
+      </div>
+      <div class="incident-body">
+        <p class="summary">{{incident.resume}}</p>
+        <p class="solution">{{incident.solution}}</p>
+      </div>
+      <div class="incident-footer">
+        <div class="rating-container">
+            <div class="stars" id="stars">
+                {% for i in r %}
+                <span class="star" data-value="1">&#x25B2;</span>
+                {% endfor %}
+            </div>
+            <div class="rating-value" id="rating-value">Gravitée:{{incident.evaluation}}</div>
+        </div>
+        <p class="platform">{{incident.platform.nom}}</p>
+        <p class="platform">{{incident.couche.couche}} : {{incident.couche.technologie}} </p>
+        <p class="user">{{incident.user}}</p>
+      </div>
+    </div>
+    {% if profile.user == incident.user %}
+    <a href="{% url 'editIncident' incident.id %}" class="edit">edit</a>
+    {% endif %}
+  </div>
+{% endblock %}

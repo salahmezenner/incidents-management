@@ -1,0 +1,61 @@
+{% extends 'superadmin/base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/create_user.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="container">
+      <div class="text">
+         Formulaire utilisateur
+      </div>
+      <form class="form" method="Post">
+        {% csrf_token %}
+
+         <div class="form-row">
+            <div class="input-data">
+               <input type="text" name="fullname" required>
+               <div class="underline"></div>
+               <label for="fullname">Nom complet:</label>
+            </div>
+            <div class="input-data">
+               <input type="text" name="username" required>
+               <div class="underline"></div>
+               <label for="username">Nom d'utilisateur:</label>
+            </div>
+         </div>
+         <div class="form-row">
+            <div class="input-data">
+               <input type="email" name="email" required>
+               <div class="underline"></div>
+               <label for="email">Adresse e-mail:</label>
+            </div>
+            <div class="input-data">
+               <input type="password" name="password" required>
+               <div class="underline"></div>
+               <label for="password">Mot de passe:</label>
+            </div>
+         </div>
+         <div class="form-row">
+         <div class="input-data textarea">
+            <br />
+            <label for="role">Rôle: </label>
+            <select id="role" name="role">
+                <option value="admin">superadmin</option>
+                <option value="adminapp">adminapp</option>
+                <option value="superviseur">superviseur</option>
+            </select>
+            <div class="form-row submit-btn">
+               <div class="input-data">
+                  <div class="inner"></div>
+                  <input type="submit" value="Valider">
+               </div>
+            </div>
+      </form>
+      </div>
+      {% if erreur %} <p class="erreur" >le mot de passe doit etre au moins 8 caractère ,une caractère miniscule , une caractère majiscule</p>{% endif %}
+
+{% endblock content %}
+

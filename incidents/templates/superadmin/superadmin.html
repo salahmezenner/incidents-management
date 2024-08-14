@@ -1,0 +1,30 @@
+{% extends 'superadmin/base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/superadmin.css' %}" >
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="menu">
+    <div class="menu-item" onclick=redirectTo('{% url 'signup' %}')>
+        <img  id="im1" src="{% static 'pics/sa1.png'%}" alt="Créer utilisateur">
+        <p id="p1">Créer utilisateur</p>
+    </div>
+    <div class="menu-item" onclick=redirectTo('{% url 'create_couche' %}')>
+        <img  id="im2" src="{% static 'pics/sa2.png'%}" alt="Créer couche incident">
+        <p id="p2">Ajouter couche incident</p>
+    </div>
+    <div class="menu-item" onclick=redirectTo('{% url 'platform_create' %}')>
+        <img id="im3" src="{% static 'pics/sa3.png'%}" alt="Créer application">
+        <p id="p3">Ajouter application</p>
+    </div>
+</div>
+
+<script>
+    function redirectTo(url) {
+        window.location.href = url;
+    }
+</script>
+{% endblock %}

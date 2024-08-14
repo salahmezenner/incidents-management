@@ -1,0 +1,45 @@
+{% extends 'superadmin/base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/create_user.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="text">
+      Formulaire couche d'incident 
+    </div>
+    <form method='Post' >
+        {% csrf_token %}
+       <div class="form-row"> <br>  <br>  <br> 
+          <div class="input-data">
+             <input type="text" name="couche" value="{{couche.couche}}" required>
+             <div class="underline"></div>
+             <label for="couche">Couche:</label>
+          </div>
+          <div class="input-data">
+          </div>
+       </div>
+       <div class="form-row">
+          <div class="input-data">
+             <input type="text" name="technologie" value="{{couche.technologie}}" required>
+             <div class="underline"></div>
+             <label for="technologie">Technologie:</label>
+          </div>
+          <div class="input-data">
+
+          </div>
+       </div>
+       <div class="form-row">
+       <div class="input-data textarea">
+          <br />
+          <div class="form-row submit-btn">
+             <div class="input-data">
+                <div class="inner"></div>
+                <input type="submit" value="Valider">
+             </div>
+          </div>
+    </form>
+    </div>
+{% endblock %}

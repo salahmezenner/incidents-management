@@ -1,0 +1,60 @@
+{% extends 'incidents/base.html' %}
+
+{% block mail_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/mail.css' %}">
+{% endblock %}
+
+{% block mail_js %}
+{% load static %}
+<script src="{% static 'js/mail.js' %}"></script>
+{% endblock %}
+  
+{% block content %}
+  <div id="wrap">
+	<div class="arrow-up"></div>
+	<div class="adown"></div>
+	<div class="down"></div>
+	<div class="arrow-left"></div>
+	<div class="arrow-right"></div>
+  
+	<div class="guts">
+	  <div class="line">  &nbsp;  &nbsp; &nbsp; Urgence de cellule de<br>  &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; crise !</div>
+  
+	</div>
+  
+  </div>
+
+
+  
+	<form method="POST">
+		{% csrf_token %}
+		<h2 class="title text-center mb-4">Envoyer des mails   <br> d'alertes aux ingénieurs : </h2>
+
+			<div class="form-group position-relative">
+				<label for="formEmail" class="d-block">
+					<i class="icon" data-feather="mail"></i>
+				</label>
+				<input id="email" name="email" class="form-control form-control-lg thick" placeholder="E-mail">
+			</div>
+
+			<div class="form-group position-relative">
+				<label for="name" class="d-block">
+					<i class="icon" data-feather="mail"></i>
+				</label>
+				<input type="text" id="name" name="name" class="form-control form-control-lg thick" placeholder="Objet " >
+			</div>
+
+	
+			<div class="form-group message">
+				<textarea id="message" name="message" class="form-control form-control-lg" rows="7" placeholder="Description cellule de crise .. "   ></textarea>
+			</div>
+		
+		
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary" tabIndex="-1">Envoyer</button>
+			</div>
+	</form>
+	
+</div>
+{% endblock %}

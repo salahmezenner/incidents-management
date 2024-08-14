@@ -1,0 +1,15 @@
+{% load static %}
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+        <img src={% static 'pics/superadmin.png' %} alt="Profile Picture" class="profile-pic">
+        <p class="profile-text" id="profilename">{{profile.fullname}}</p>
+    </div>
+    <br> 
+    <div class="sidebar-expanded">
+        <a href="{% url 'superadmin' %}" class="sidebar-link"> <i class="fa-solid fa-globe"></i> Acceuil</a>
+        <a href="{% url 'user_list' %}" class="sidebar-link"> <i class="fa-solid fa-user"></i> Liste des utilisateurs </a>
+        <a href="{% url 'platform_list' %}" class="sidebar-link"> <i class="fa-solid fa-laptop"></i>Liste des applications </a>
+        <a href="{% url 'list_couches' %}" class="sidebar-link"> <i class="fa-solid fa-globe"></i> Listes des couches d'incidents </a>
+        <a href="{% url 'logoutView' %}" class="sidebar-link"> <i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+    </div>
+</div>

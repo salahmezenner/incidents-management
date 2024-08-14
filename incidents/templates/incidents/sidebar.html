@@ -1,0 +1,18 @@
+{% load static %}
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-content">
+    {% if profile.role == 'adminapp' %}<img src="{% static 'pics/adminapp.png'%}" alt="Profile Picture" class="profile-pic">{% endif %}
+    {% if profile.role == 'superviseur' %}<img src="{% static 'pics/superviseur.png'%}" alt="Profile Picture" class="profile-pic">{% endif %}
+    <p class="profile-text" id="profilename">{{profile.fullname}}</p>
+  </div>
+  <br> <br> 
+  <div class="sidebar-expanded">
+    <a href="{% url 'adminapp' %}" class="sidebar-link"> <i class="fa-solid fa-circle-exclamation"> </i> Liste des incidents</a>
+    {% if profile.role == 'adminapp' %}<a href="{% url 'mesIncident' %}" class="sidebar-link"> <i class="fa-solid fa-circle-exclamation"> </i> Mes incidents</a>{% endif %}
+    <a href="{% url 'stats' %}" class="sidebar-link" > <i class="fa-solid fa-chart-simple"></i> Statistiques par mois</a>
+    <a href="{% url 'platform_chart' %}" class="sidebar-link" > <i class="fa-solid fa-chart-simple"></i> Statistiques par platformes</a>
+    {% if profile.role == 'adminapp' %}<a href="{% url 'createIncident' %}" class="sidebar-link "> <i class="fa-solid fa-envelope"></i> Enregistrer un incident</a>{% endif %}
+    <a href="{% url 'cellule_de_crise' %}" class="sidebar-link "> <i class="fa-solid fa-circle-xmark"></i>cellule de crise</a>
+    <a href="{% url 'logoutView' %}" class="sidebar-link" > <i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+  </div>
+</div>

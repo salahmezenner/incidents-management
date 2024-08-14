@@ -1,0 +1,56 @@
+{% extends 'incidents/base.html' %}
+
+{% block create_incident_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/create_incident.css'%}">        
+{% endblock  %}
+
+{% block content %}
+<div class="container">
+    <h2>Formulaire d'incident :</h2>
+    <form  method="post">
+        {% csrf_token %}
+        <label for="intitule">Intitulé :</label>
+        <input type="text" id="intitule" name="intitule" value="{{incident.intitule}}" required>
+        
+        <label for="resume">Résumé:</label>
+        <textarea id="resume" name="resume" rows="5" required> {{incident.resume}} </textarea>
+        
+        <label for="solution">Solution:</label>
+        <textarea id="solution" name="solution" rows="10" required> {{incident.solution}} </textarea>
+        
+        <label for="evaluation">Gravitée (1 - 5):</label>
+        <input type="range" id="evaluation" name="evaluation" min="1" max="5" value="1" required>
+        <p>Valeur séléctionnée: <span id="selected-value">{{incident.evaluation}}</span></p>
+
+            <script>
+                const evaluationInput = document.getElementById('evaluation');
+                const selectedValueDisplay = document.getElementById('selected-value');
+
+                evaluationInput.addEventListener('input', function() {
+                    selectedValueDisplay.textContent = evaluationInput.value;
+                });
+
+                evaluationInput.addEventListener('change', function() {
+                    evaluationInput.setAttribute('value', evaluationInput.value);
+                });
+            </script>
+        
+        <label for="platform">Application:</label>
+        <select id="platform" name="platform">
+            {% for platform in platforms %}
+                <option value="{{platform.nom}}" {% if incident.platform_id == platform.id %} selected {% endif %}>{{ platform.nom}}</option>
+            {% endfor %}
+        </select>
+        <label for="platform">Couche :</label>
+        <select id="technologie" name="technologie">
+            {% for couche in couches %}
+                <option value="{{couche.technologie}}" {% if incident.couche_id == couche.id %} selected {% endif %}>{{ couche.couche}}:{{couche.technologie}} </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Soumettre </button>
+    </form>
+</div>
+{% endblock  %}
+

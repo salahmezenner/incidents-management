@@ -1,0 +1,180 @@
+{% extends 'incidents/base.html' %}
+
+{% block incidents_list_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/incidents_list.css'%}">
+{% endblock %}
+
+{% block js %}
+{% load static %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'js/incidents_list.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="search-filters">
+<form action="" id="form2" class="search">
+  <input id="rechinput" type="search" placeholder="Cherchez un incident.." required >
+  <i id="rech" class="fa fa-search"> </i>
+</form>
+
+<div class="filters">
+<div class="datesContainer">
+<div class="date">
+<label for="startDate">De:</label>
+<input type="date" id="startDate">
+</div>
+<div class="date">
+<label for="endDate">Á:</label>
+<input type="date" id="endDate">
+</div>
+</div>
+
+<div class="optionbox">
+<select id="userFilter">
+  <option value="">Séléctionner utilisateur </option>
+  {% for profile in profiles %}
+  <option value="{{profile.user.username}}"> {{profile.user.username}} </option>
+  {% endfor %}
+</select>
+</div>
+
+<div class="optionbox">
+<select id="platformFilter">
+  <option value="">Séléctionner application</option>
+  {% for platform in platforms %}
+  <option value="{{platform.nom}}">{{platform.nom}}</option>
+  {% endfor %}
+</select>
+</div>
+</div>
+</div>
+
+<div class="container">
+{% for incident in incidents %}
+<a href="{% url 'showIncident' incident.id %}" class="card-link">
+    <div class="card">
+      <div class="card-body">
+        <span class="tag tag-teal">platforme: {{incident.platform.nom}}</span>
+        <h4>
+            {{incident.intitule}}
+        </h4>
+        <p>
+          {{incident.resume}}
+        </p>
+        <div class="user">
+          <img src="{% static 'pics/adminapp.png' %}" alt="user" />
+          <div class="user-info">
+            <h5>{{incident.user}}</h5>
+            <small>{{incident.datetime}}</small>
+            <small>id:{{incident.id}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+{% endfor %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('rechinput');
+    var startDateInput = document.getElementById('startDate');
+    var endDateInput = document.getElementById('endDate');
+    var userFilter = document.getElementById('userFilter');
+    var platformFilter = document.getElementById('platformFilter');
+
+    // Add event listeners for input events on filter elements
+    [searchInput, startDateInput, endDateInput, userFilter, platformFilter].forEach(function(element) {
+        element.addEventListener('input', filterIncidents);
+    });
+
+    function filterIncidents() {
+        var searchValue = searchInput.value.toLowerCase().trim();
+        var startDateString = startDateInput.value;
+        var endDateString = endDateInput.value;
+        var userValue = userFilter.value.toLowerCase().trim();
+        var platformValue = platformFilter.value.toLowerCase().trim();
+
+        var startDateValue = startDateString ? new Date(startDateString) : null;
+        var endDateValue = endDateString ? new Date(endDateString) : null;
+
+        var cards = document.querySelectorAll('.card');
+
+        cards.forEach(function(card) {
+            var intitule = card.querySelector('h4').textContent.toLowerCase();
+            var user = card.querySelector('.user-info h5').textContent.toLowerCase();
+            var platform = card.querySelector('.tag').textContent.toLowerCase().replace('platforme: ', '').trim();
+            var dateString = card.querySelector('.user small').textContent;
+            var date = parseDateString(dateString);
+
+            var showCard = true;
+
+            if (searchValue && !intitule.includes(searchValue)) {
+                showCard = false;
+            }
+
+            if (startDateValue && endDateValue) {
+                if (date < startDateValue || date > endDateValue) {
+                    showCard = false;
+                }
+            }
+
+            if (userValue && user !== userValue) {
+                showCard = false;
+            }
+
+            if (platformValue && platform !== platformValue) {
+                showCard = false;
+            }
+
+            if (showCard) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function parseDateString(dateString) {
+        // Split the date string into components
+        var parts = dateString.split(/[\s,]+/);
+
+        // Get the month, day, year, and time from the parts
+        var month = parts[0];
+        var day = parseInt(parts[1], 10);
+        var year = parseInt(parts[2], 10);
+        var time = parts[3];
+
+        // Convert 12-hour time to 24-hour time
+        var hour = parseInt(time.split(':')[0]);
+        var minute = parseInt(time.split(':')[1]);
+        if (time.toLowerCase().indexOf('p') !== -1 && hour !== 12) {
+            hour += 12;
+        }
+        if (time.toLowerCase().indexOf('a') !== -1 && hour === 12) {
+            hour = 0;
+        }
+
+        // Convert month name to month number
+        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+        var monthNumber = months.indexOf(month.substring(0, 3).toLowerCase());
+
+        // Create a new Date object
+        var date = new Date(year, monthNumber, day, hour, minute);
+
+        return date;
+    }
+});
+
+$(document).ready(function(){
+    $('.input-daterange').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+        calendarWeeks: true,
+        clearBtn: true,
+        disableTouchKeyboard: true
+    });
+});
+</script>
+{% endblock %}
