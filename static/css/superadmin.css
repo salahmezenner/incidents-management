@@ -1,0 +1,92 @@
+  body{ 
+    font-family:"Nunito Sans", sans-serif; 
+  }
+  
+  .menu{
+   
+    display: flex;
+  
+    padding: 10px;
+    border-radius: 10px;
+    position:relative; 
+    margin-left: 60px;
+   
+}
+
+.menu-item {
+    text-align: center;
+    position: relative; 
+    left:190px;
+    top:220px;
+    position:relative;
+    bottom:30px;
+}
+
+.menu-item img {
+   
+    margin-bottom: 10px;
+}
+
+
+#im1{ 
+    width: 340px;
+    height: 240px;
+    position:relative;
+    bottom:10px;
+    right:40px;
+    margin-right:80px;
+    
+}
+
+#im2{ 
+    width: 370px;
+    height: 310px;
+    position:relative;
+    bottom:30px;
+    right:70px;
+}
+#im3{ 
+    width: 470px;
+    height: 380px;
+    position:relative;
+    bottom:70px;
+    right:120px;
+}
+.menu-item p {
+    margin: 0;
+    font-size: 21px;
+    font-weight: bold;
+    
+   
+}
+
+#p1{ 
+    position:relative;
+    margin-top:100px;
+   bottom:95px;
+   right:90px;
+}
+#p2{ 
+    margin-top:100px;
+position:relative;
+bottom:160px;
+right:80px;
+}
+
+
+#p3{  margin-top:100px;
+    position:relative;
+    bottom:225px;
+    right:110px;
+}
+
+
+p:hover {
+    font-size: 23px;
+    color:#90D26D;
+   text-shadow: none;
+  
+}
+
+
+  

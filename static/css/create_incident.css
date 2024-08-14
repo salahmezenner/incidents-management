@@ -1,0 +1,59 @@
+.container {
+    max-width: 600px;
+    margin-top:50px;
+    margin-left:150px;
+
+    background: #EEEEEE;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: "Nunito Sans", sans-serif;
+   
+
+    
+}
+h2 { font-size: 28px;
+    text-align: center;
+    text-shadow: grey;
+    
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"],
+textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+input[type="range"] {
+    width: 90%;
+    margin-bottom: 20px;
+}
+button {
+    background-image: linear-gradient(131deg, #ffd340, #ff923c, #ff923c, #ff923c);
+    color: #333;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 200px;
+}
+button:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em #ff923cba;
+}
+
+#platform , #technologie{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;  
+    margin-bottom: 20px;
+}
+

@@ -1,0 +1,148 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    color: rgb(74, 71, 71);
+}
+
+.logo {
+    float: left;
+}
+
+.logo img {
+    position: absolute;
+    height: 110px;
+   
+   
+    bottom:72%;
+    right:80%
+}
+
+nav ul {
+    float: right;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+   
+  
+    padding: 100px 0;
+    color: #fff;
+    text-align: center;
+}
+
+#image1{ 
+height:980px ;
+width:1400px;
+position:relative;
+right:17%;
+bottom:160px;
+filter: grayscale(20%) brightness(0%);
+filter: saturate(180%) contrast(140%);
+transform: scale(1.2);
+
+
+} 
+
+.gaucheflou {
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02) 90%);
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 7), rgba(0, 0, 0, 0) 70%);
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+}
+
+
+
+.login-form {
+    
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    max-width: 400px;
+    width: 110%;
+    height:270px;
+    position: relative;
+    bottom:800px;
+    right:6%;
+
+}
+
+.login-form h2 {
+   
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: rgb(90, 87, 87);
+
+}
+
+.login-form input[type="username"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9; 
+}
+
+.login-form button {
+    width: 100%;
+    font-size: 12px;
+    padding: 12px;
+    border: none;
+    border-radius: 9px;
+    background-color:  rgba(223, 119, 45, 0.93); 
+    color: #fff; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #cc5500;
+}
+
+
+.error-message {
+    font-size: 14px;
+    margin-top: 5px;
+    display: none; 
+}
+
+.footer {
+    background-color:  rgba(223, 119, 45, 0.93); 
+    color: #fff; 
+    padding: 20px 0; 
+    text-align: center; 
+    position: relative;
+    bottom:540px;
+   
+}
+
+.footer p {
+    margin: 0; 
+
+}

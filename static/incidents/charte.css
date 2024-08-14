@@ -1,0 +1,64 @@
+body {
+  font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.chart-container {
+  margin-top: 20px;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.stats-icon {
+  position: absolute;
+  top: 10px; /* Adjust as necessary */
+  left: 10px; /* Adjust as necessary */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 100px;
+  height: 100px;
+}
+
+.bar {
+  width: 10px;
+  background-color: #FFC374;
+  animation: grow 1s infinite;
+  border-radius: 5px;
+}
+
+.bar1 { animation-delay: 0s; height: 20%; }
+.bar2 { animation-delay: 0.2s; height: 50%; }
+.bar3 { animation-delay: 0.4s; height: 30%; }
+.bar4 { animation-delay: 0.6s; height: 70%; }
+.bar5 { animation-delay: 0.8s; height: 40%; }
+
+@keyframes grow {
+  0%, 100% {
+      transform: scaleY(1);
+  }
+  50% {
+      transform: scaleY(1.5);
+  }
+}
